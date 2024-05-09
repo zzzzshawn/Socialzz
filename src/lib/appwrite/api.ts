@@ -345,16 +345,25 @@ export async function deletePost(postId: string, imageId: string) {
     if (!postId || !imageId) throw Error;
 
     try {
+        // Delete the document from the database
         await databases.deleteDocument(
             appwriteConfig.databaseId,
             appwriteConfig.postCollectionId,
             postId
-        )
+        );
 
-        return { status: 'ok' }
+
+        // Delete the image from storage
+        await storage.deleteFile(
+            appwriteConfig.storageId,
+            imageId
+        ); // Assuming imageId is the ID of the image file
+
+        return { status: 'ok' };
 
     } catch (error) {
-        console.log(error)
+        console.error('Error deleting post:', error);
+        throw error;
     }
 }
 
