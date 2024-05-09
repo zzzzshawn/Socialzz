@@ -133,9 +133,9 @@ const PostForm = ({post, action}: PostFormProps) => { //gave prop (posts) a type
                 />
                 <div className="flex gap-4 items-center justify-end">
                 <Button type="button" className=" hover:scale-110 transition hover:bg-dark-4 hover:text-white">Cancel</Button>
-                <Button className="shad-button bg-white text-black whitespace-nowrap hover:scale-110 transition hover:bg-dark-4 hover:text-white" type="submit" 
+                <Button className="bg-dark-4 hover:bg-white hover:text-black transition text-white" type="submit" 
                 disabled={isLoadingCreate || isLoadingUpdate}>
-                    {(isLoadingCreate || isLoadingUpdate)?<Loader/>: `${action} Post`}
+                    {(isLoadingCreate || isLoadingUpdate)?<Loader/>: `${action}`}
                 </Button>
                 </div>
             </form>
