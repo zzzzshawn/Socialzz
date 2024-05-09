@@ -70,7 +70,7 @@ const SigninForm = () => {
       <div className="sm:w-420 flex-center flex-col">
         <img src="/assets/images/logo.svg" />
         <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">Log In to account.</h2>
-        <p className="text-light-3 small-medium md:base-regular mt-2">Welcome Bacck! enter your account details</p>
+        <p className="text-slate-400 small-medium md:base-regular mt-2">Welcome Bacck! enter your account details</p>
 
 
 
@@ -101,7 +101,7 @@ const SigninForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="shad-button_primary mt-2">
+          <Button type="submit" className="bg-white text-black font-bold mt-2 hover:bg-gray-300 ">
             {isSigningIn? (
               <div className="flex-center gap-2">
                 <Loader/>Loading...
@@ -110,7 +110,7 @@ const SigninForm = () => {
           </Button>
           <p className="text-small-regular text-light-2 text-center mt-2">
               Dont have an account?
-              <Link to='/sign-up' className="text-primary-500 text-small-semibold ml-1" >Create an account</Link>
+              <Link to='/sign-up' className="text-white body-bold underline text-small-semibold ml-1" >Create an account</Link>
 
           </p>
 

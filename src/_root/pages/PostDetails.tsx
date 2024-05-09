@@ -2,12 +2,14 @@ import Loader from '@/components/shared/Loader';
 import PostStats from '@/components/shared/PostStats';
 import { Button } from '@/components/ui/button';
 import { useUserContext } from '@/context/AuthContext';
-import { useGetPostById } from '@/lib/react-query/queriesAndMutation'
+import { useDeletePost, useGetPostById } from '@/lib/react-query/queriesAndMutation'
 import { timeAgo } from '@/lib/utils';
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 
 const PostDetails = () => {
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const postId: string = id!; // Assert that id is a non-nullable string
   const { data: post, isPending } = useGetPostById(postId); // Use postId directly as it's already asserted to be non-nullable
@@ -15,7 +17,18 @@ const PostDetails = () => {
   
   const { user } = useUserContext(); // to check if the user is the creator of post. if yes, show him the edit and delete options
 
-  const handleDeletePost = () => { }
+  const { mutate: deletePost } = useDeletePost();
+
+
+  const handleDeletePost = () => {
+    if (id && post?.imageId) {
+      deletePost({ postId: id, imageId: post.imageId });
+      navigate(-1);
+    } else {
+      // Handle the case where id or post.imageId is undefined
+      console.error("postId or imageId is undefined");
+    }
+  };
 
 
   return (
@@ -24,7 +37,7 @@ const PostDetails = () => {
         <div className="post_details-card">
           <img src={post?.imageUrl} alt="creator" className='post_details-img' />
           <div className="post_details-info">
-            <div className="flex-between w-full">
+            <div className="flex-between w-full ">
 
               <Link to={`/profile/${post?.creator.$id}`} className='flex items-center gap-3'>
                 <img src={post?.creator?.imageUrl || '/assets/icons/profile-placeholder.svg'}
@@ -35,7 +48,7 @@ const PostDetails = () => {
                   <p className="base-medium lg:body-bold text-light-1">
                     {post?.creator.name}
                   </p>
-                  <div className="flex-center gap-2 text-light-3">
+                  <div className="flex items-center flex-wrap gap-2 text-slate-400">
                     <p className="subtle-semibold lg:small-regular">
                       {timeAgo(post?.$createdAt)}
                     </p>
