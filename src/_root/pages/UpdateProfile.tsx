@@ -15,7 +15,10 @@ import { useToast } from "@/components/ui/use-toast";
 
 import { useUserContext } from "@/context/AuthContext";
 import { ProfileValidation } from "@/lib/validation";
-import { useGetUserById, useUpdateUser } from "@/lib/react-query/queriesAndMutation";
+import {
+  useGetUserById,
+  useUpdateUser,
+} from "@/lib/react-query/queriesAndMutation";
 import Loader from "@/components/shared/Loader";
 import ProfileUploader from "./ProfileUploader";
 import { Input } from "@/components/ui/input";
@@ -93,7 +96,8 @@ const UpdateProfile = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleUpdate)}
-            className="flex flex-col gap-7 w-full mt-4 max-w-5xl">
+            className="flex flex-col gap-7 w-full mt-4 max-w-5xl"
+          >
             <FormField
               control={form.control}
               name="file"
@@ -182,16 +186,17 @@ const UpdateProfile = () => {
             <div className="flex gap-4 items-center justify-end">
               <Button
                 type="button"
-                className="shad-button_dark_4"
-                onClick={() => navigate(-1)}>
+                className="bg-black"
+                onClick={() => navigate(-1)}
+              >
                 Cancel
               </Button>
               <Button
                 type="submit"
-                className="shad-button_primary whitespace-nowrap"
-                disabled={isLoadingUpdate}>
-                {isLoadingUpdate && <Loader />}
-                Update Profile
+                className="bg-white text-black hover:bg-dark-4 hover:text-white"
+                disabled={isLoadingUpdate}
+              >
+                {isLoadingUpdate ? <Loader /> : "Update Profile"}
               </Button>
             </div>
           </form>
