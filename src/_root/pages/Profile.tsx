@@ -48,8 +48,6 @@ const Profile = () => {
   const postId: string = id!; // Assert that id is a non-nullable string
   const { data: currentUser } = useGetUserById(postId);
 
-  console.log("userid:", user.id)
-  console.log("cuser:", currentUser?.$id)
 
   if (!currentUser)
     return (
