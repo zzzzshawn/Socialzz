@@ -193,7 +193,7 @@ const UpdateProfile = () => {
               </Button>
               <Button
                 type="submit"
-                className="bg-white text-black hover:bg-dark-4 hover:text-white"
+                className="bg-white text-black hover:bg-dark-3 hover:text-white"
                 disabled={isLoadingUpdate}
               >
                 {isLoadingUpdate ? <Loader /> : "Update Profile"}
