@@ -11,7 +11,7 @@ import { useInView } from 'react-intersection-observer';
 
 const Explore = () => {
 
-  const {ref, InView } = useInView(); 
+  const [ref, InView]  = useInView(); 
   const { data: posts, fetchNextPage, hasNextPage } = useGetPosts()
   const [searchValue, setsearchValue] = useState('')
 
