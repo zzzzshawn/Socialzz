@@ -359,12 +359,13 @@ export async function deletePost(postId: string, imageId: string) {
 }
 
 export async function getInfinitePosts({ pageParams }: { pageParams: number }) {
+    const limitPerPage = 2; // Set the limit of posts per page
 
-    const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(9)]; // queries is any type of array that will get the newest post first and limit is 10
+    const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(limitPerPage)];
 
-    if (pageParams) {
-        queries.push(Query.cursorAfter(pageParams.toString())); //what this line does is, suppose if were on page 2 of explore then skip the first 10 and show me the second 10 (since limit is 10). 
-        //pageParams will consists of a NUMBER of how many pages we want to skip
+    // If pageParams is provided and it's greater than 0, then add pagination logic
+    if (pageParams && pageParams > 0) {
+        queries.push(Query.cursorAfter(pageParams.toString()));
     }
 
     try {
@@ -372,18 +373,27 @@ export async function getInfinitePosts({ pageParams }: { pageParams: number }) {
             appwriteConfig.databaseId,
             appwriteConfig.postCollectionId,
             queries
-        )
+        );
 
         if (!posts) throw Error;
 
+        // If there are no more posts available to fetch, return null to stop fetching more posts
+        if (posts.documents.length === 0) {
+            return null;
+        }
+
+        // If there's only one post and it's already displayed (i.e., we're on the first page), return null to stop fetching more posts
+        if (posts.documents.length === 1 && pageParams === 0) {
+            return null;
+        }
+
         return posts;
-
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-
-
 }
+
+
 
 
 export async function searchPosts(searchTerm: string) { 
