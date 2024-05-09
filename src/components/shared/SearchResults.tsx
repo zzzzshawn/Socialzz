@@ -5,7 +5,7 @@ import Loader from "./Loader";
 
 type SearchResultsProps = {
   isSearchFetching: boolean;
-  searchedPosts: Models.Document[];
+  searchedPosts?: Models.DocumentList<Models.Document>;
 }
 
 
