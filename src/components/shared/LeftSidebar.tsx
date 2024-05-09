@@ -17,7 +17,7 @@ const LeftSidebar = () => {
   }, [isSuccess]);
 
   return (
-    <nav className="leftsidebar ">
+    <nav className="leftsidebar overflow-auto">
       <div className="flex flex-col gap-11 items-center lg:pr-10">
         <Link to="/" className="flex gap-3 items-center">
           <img
