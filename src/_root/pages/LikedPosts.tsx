@@ -1,14 +1,10 @@
 import GridPostList from "@/components/shared/GridPostList";
 import Loader from "@/components/shared/Loader";
-import { useUserContext } from "@/context/AuthContext";
 import { useGetCurrentUser } from "@/lib/react-query/queriesAndMutation";
-import { Link, useLocation, useParams } from "react-router-dom";
 
 const LikedPosts = () => {
   const { data: currentUser } = useGetCurrentUser();
-  const { pathname } = useLocation();
-  const { user } = useUserContext();
-  const { id } = useParams();
+
 
 
 
