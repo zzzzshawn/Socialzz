@@ -9,7 +9,10 @@ import { Link, useParams } from 'react-router-dom'
 
 const PostDetails = () => {
   const { id } = useParams();
-  const { data: post, isPending } = useGetPostById(id || '') //renamed data as post (data: post)
+  const postId: string = id!; // Assert that id is a non-nullable string
+  const { data: post, isPending } = useGetPostById(postId); // Use postId directly as it's already asserted to be non-nullable
+  
+  
   const { user } = useUserContext(); // to check if the user is the creator of post. if yes, show him the edit and delete options
 
   const handleDeletePost = () => { }

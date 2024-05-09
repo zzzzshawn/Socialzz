@@ -7,7 +7,11 @@ export function cn(...inputs: ClassValue[]) {
 
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
 
-export function timeAgo(dateString: string): string {
+export function timeAgo(dateString: string | undefined): string {
+  if(dateString === undefined){
+    return 'Never'
+  }
+  
   const currentDate: Date = new Date();
   const inputDate: Date = new Date(dateString);
 
