@@ -22,46 +22,13 @@ const LikedPosts = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center w-full p-20 max-sm:p-10">
-      {currentUser.$id === user.id && (
-        <div className="flex  w-full m-5 ">
-          <Link
-            to={`/profile/${id}`}
-            className={`profile-tab rounded-l-lg ${
-              pathname === `/profile/${id}` && "!bg-dark-3"
-            }`}
-          >
-            <img
-              src={"/assets/icons/posts.svg"}
-              alt="posts"
-              width={20}
-              height={20}
-            />
-            Posts
-          </Link>
-          <Link
-            to={`/profile/${id}/liked-posts`}
-            className={`profile-tab rounded-r-lg ${
-              pathname === `/profile/${id}/liked-posts` && "!bg-dark-3"
-            }`}
-          >
-            <img
-              src={"/assets/icons/like.svg"}
-              alt="like"
-              width={20}
-              height={20}
-            />
-            Liked Posts
-          </Link>
-        </div>
-      )}
-
+      <>
       {currentUser.liked.length === 0 && (
-        <p className="text-slate-400 mt-40">No liked posts</p>
+        <p className="text-light-4">No liked posts</p>
       )}
 
       <GridPostList posts={currentUser.liked} showStats={false} />
-      </div>
+    </>
     </>
   );
 };

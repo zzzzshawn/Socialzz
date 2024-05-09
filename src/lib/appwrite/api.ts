@@ -367,40 +367,28 @@ export async function deletePost(postId: string, imageId: string) {
     }
 }
 
-export async function getInfinitePosts({ pageParams }: { pageParams: number }) {
-    const limitPerPage = 2; // Set the limit of posts per page
-
-    const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(limitPerPage)];
-
-    // If pageParams is provided and it's greater than 0, then add pagination logic
-    if (pageParams && pageParams > 0) {
-        queries.push(Query.cursorAfter(pageParams.toString()));
+export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(6)];
+  
+    if (pageParam) {
+      queries.push(Query.cursorAfter(pageParam.toString()));
     }
-
+  
     try {
-        const posts = await databases.listDocuments(
-            appwriteConfig.databaseId,
-            appwriteConfig.postCollectionId,
-            queries
-        );
-
-        if (!posts) throw Error;
-
-        // If there are no more posts available to fetch, return null to stop fetching more posts
-        if (posts.documents.length === 0) {
-            return null;
-        }
-
-        // If there's only one post and it's already displayed (i.e., we're on the first page), return null to stop fetching more posts
-        if (posts.documents.length === 1 && pageParams === 0) {
-            return null;
-        }
-
-        return posts;
+      const posts = await databases.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.postCollectionId,
+        queries
+      );
+  
+      if (!posts) throw Error;
+  
+      return posts;
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-}
+  }
 
 
 

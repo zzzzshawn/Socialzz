@@ -162,8 +162,8 @@ export const useGetPosts = () => {
       queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
       queryFn: getInfinitePosts as any,
       getNextPageParam: (lastPage: any) => {
-        // If there are no more documents in the last page, return null to stop fetching more posts
-        if (lastPage || lastPage.documents.length === 0) {
+        // If there's no data, there are no more pages.
+        if (lastPage && lastPage.documents.length === 0) {
           return null;
         }
   
@@ -171,9 +171,9 @@ export const useGetPosts = () => {
         const lastId = lastPage.documents[lastPage.documents.length - 1].$id;
         return lastId;
       },
-      initialPageParam: 0,
+      initialPageParam: undefined, // Add this line
     });
-};
+  };
 
 
 

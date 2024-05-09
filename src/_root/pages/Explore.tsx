@@ -84,7 +84,6 @@ const Explore = () => {
         ) : (
           <>
             {posts.pages.map((item, index) => {
-              console.log("page:", index, "item", item);
               return (
                 <GridPostList key={`page-${index}`} posts={item.documents} />
               );
