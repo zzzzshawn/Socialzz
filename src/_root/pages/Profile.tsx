@@ -75,10 +75,10 @@ const Profile = () => {
 
             <div className="flex flex-col gap-8 mt-10 items-start max-xl:items-center justify-center p-2 xl:justify-start flex-wrap z-20">
               <StatBlock value={currentUser.posts.length} label="Posts" />
-              <div className={`${user.id !== currentUser.$id && "hidden"}`}>
+              <div className={`${user.id !== currentUser.$id && "hidden"} flex-center flex-col`}>
                 <Link
                   to={`/update-profile/${currentUser.$id}`}
-                  className={`h-12 bg-dark-4 px-5 text-white invert flex-center gap-2 rounded-lg w-32 ${
+                  className={`h-12 hover:bg-dark-4 bg-white group  flex-center gap-2 rounded-lg w-32 ${
                     user.id !== currentUser.$id && "hidden"
                   }`}
                 >
@@ -87,18 +87,19 @@ const Profile = () => {
                     alt="edit"
                     width={20}
                     height={20}
+                    className=" invert group-hover:invert-0 "
                   />
-                  <p className="flex whitespace-nowrap ">
+                  <p className="font-semibold whitespace-nowrap group-hover:text-white text-black ">
                     Edit Profile
                   </p>
                 </Link>
                 <Button
                   variant="ghost"
-                  className="bg-dark-4 text-white  w-full mt-4 invert md:hidden"
+                  className="hover:bg-dark-4 group w-24 mt-4 md:hidden"
                   onClick={() => signOut()}
                 >
                   <img src="/assets/icons/logout.svg" alt="logout" /> 
-                  <p className=" ml-2">
+                  <p className=" ml-2 font-semibold">
                     Logout
                   </p>
                 </Button>
