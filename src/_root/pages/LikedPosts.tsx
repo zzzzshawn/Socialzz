@@ -22,9 +22,9 @@ const LikedPosts = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center w-full p-20">
+      <div className="flex flex-col items-center w-full p-20 max-sm:p-10">
       {currentUser.$id === user.id && (
-        <div className="flex max-w-5xl w-full">
+        <div className="flex  w-full m-5 ">
           <Link
             to={`/profile/${id}`}
             className={`profile-tab rounded-l-lg ${

@@ -5,13 +5,16 @@ import {
   Outlet,
   useParams,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
 
 import { LikedPosts } from "@/_root/pages";
 import { useUserContext } from "@/context/AuthContext";
-import { useGetUserById } from "@/lib/react-query/queriesAndMutation";
+import { useGetUserById, useSignOutAccount } from "@/lib/react-query/queriesAndMutation";
 import Loader from "@/components/shared/Loader";
 import GridPostList from "@/components/shared/GridPostList";
+import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
 interface StabBlockProps {
   value: string | number;
@@ -29,6 +32,16 @@ const Profile = () => {
   const { id } = useParams();
   const { user } = useUserContext();
   const { pathname } = useLocation();
+  const navigate = useNavigate(); 
+
+  const {mutate: signOut, isSuccess } = useSignOutAccount();
+
+
+  useEffect(() => {
+    if(isSuccess){
+     navigate(0);
+    }
+  }, [isSuccess])
 
   const { data: currentUser } = useGetUserById(id || "");
 
@@ -63,33 +76,42 @@ const Profile = () => {
             <div className="flex flex-col gap-8 mt-10 items-start max-xl:items-center justify-center p-2 xl:justify-start flex-wrap z-20">
               <StatBlock value={currentUser.posts.length} label="Posts" />
               <div className={`${user.id !== currentUser.$id && "hidden"}`}>
-              <Link
-                to={`/update-profile/${currentUser.$id}`}
-                className={`h-12 bg-dark-4 px-5 text-light-1 flex-center gap-2 rounded-lg w-32 ${
-                  user.id !== currentUser.$id && "hidden"
-                }`}>
-                <img
-                  src={"/assets/icons/edit.svg"}
-                  alt="edit"
-                  width={20}
-                  height={20}
-                />
-                <p className="flex whitespace-nowrap small-medium">
-                  Edit Profile
-                </p>
-              </Link>
+                <Link
+                  to={`/update-profile/${currentUser.$id}`}
+                  className={`h-12 bg-dark-4 px-5 text-white invert flex-center gap-2 rounded-lg w-32 ${
+                    user.id !== currentUser.$id && "hidden"
+                  }`}
+                >
+                  <img
+                    src={"/assets/icons/edit.svg"}
+                    alt="edit"
+                    width={20}
+                    height={20}
+                  />
+                  <p className="flex whitespace-nowrap ">
+                    Edit Profile
+                  </p>
+                </Link>
+                <Button
+                  variant="ghost"
+                  className="bg-dark-4 text-white  w-full mt-4 invert md:hidden"
+                  onClick={() => signOut()}
+                >
+                  <img src="/assets/icons/logout.svg" alt="logout" /> 
+                  <p className=" ml-2">
+                    Logout
+                  </p>
+                </Button>
+               
+              </div>
             </div>
-            </div>
-            
 
             <p className="small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">
               {currentUser.bio}
             </p>
           </div>
 
-          <div className="flex justify-center gap-4">
-            
-          </div>
+          <div className="flex justify-center gap-4"></div>
         </div>
       </div>
 
@@ -99,7 +121,8 @@ const Profile = () => {
             to={`/profile/${id}`}
             className={`profile-tab rounded-l-lg ${
               pathname === `/profile/${id}` && "!bg-dark-3"
-            }`}>
+            }`}
+          >
             <img
               src={"/assets/icons/posts.svg"}
               alt="posts"
@@ -112,7 +135,8 @@ const Profile = () => {
             to={`/profile/${id}/liked-posts`}
             className={`profile-tab rounded-r-lg ${
               pathname === `/profile/${id}/liked-posts` && "!bg-dark-3"
-            }`}>
+            }`}
+          >
             <img
               src={"/assets/icons/like.svg"}
               alt="like"
