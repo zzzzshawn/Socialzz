@@ -17,7 +17,7 @@ const GridPostList = ({ posts, showUser = true, showStats = true }: GridPostList
   const { user } = useUserContext();
 
   return (
-    <ul className="grid-container p-10 max-md:p-1">
+    <ul className="grid-container p-10 max-md:p-5">
       {posts.map((post) => (
         <li key={post.$id} className="relative min-w-80 h-70   ">
           <Link to={`/posts/${post.$id}`} className="grid-post_link">

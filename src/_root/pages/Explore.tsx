@@ -25,7 +25,7 @@ const Explore = () => {
 
   if (!posts) {
     return (
-      <div className="flex-center w-full h-full">
+      <div className="flex-center w-full h-screen">
         <Loader />
       </div>
     );
@@ -92,7 +92,7 @@ const Explore = () => {
         )}
       </div>
       {hasNextPage && !searchValue && (
-        <div ref={ref} className="mt-10">
+        <div ref={ref} className="mt-5">
           <Loader />
         </div>
       )}
