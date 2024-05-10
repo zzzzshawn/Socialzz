@@ -82,7 +82,7 @@ const PostForm = ({post, action}: PostFormProps) => { //gave prop (posts) a type
                         <FormItem>
                             <FormLabel className="shad-form_label">Caption</FormLabel>
                             <FormControl>
-                                <Textarea className="shad-textarea custom-scrollbar" {...field} />
+                                <Textarea className="shad-textarea custom-scrollbar !bg-dark-4" {...field} />
                             </FormControl>
                             <FormMessage className="shad-form_message"/>
                         </FormItem>

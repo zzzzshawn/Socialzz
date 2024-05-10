@@ -17,7 +17,7 @@ const PostCard = ({ post }: PostCardProps) => {
 
     return (
         <div className="post-card">
-            <div className="flex-between">
+            <div className="flex-between mb-5">
                 <div className="flex items-center gap-3">
                     <Link to={`/profile/${post.creator.$id}`}>
                         <img src={post?.creator?.imageUrl || '/assets/icons/profile-placeholder.svg'}
@@ -51,8 +51,10 @@ const PostCard = ({ post }: PostCardProps) => {
             </div>
 
             <Link to={`/posts/${post.$id}`}>
-                <div className="small-medium lg:base-medium py-5">
-                    <p>{post.caption}</p>
+                <img src={post.imageUrl || 'assets/icons/profile-placeholder.svg'} alt="post image" className=" border-y border-dark-4 p-5" />
+
+                <div className="small-medium lg:base-medium py-5 ">
+                    <p> <span className="body-bold">{post.creator.username}</span> : <span className="font-extralight">{post.caption}</span> </p>
                     <ul className="flex gap-1 mt-2">
                         {post.tags.map((tag: string) => (
                             <li key={tag} className="text-light-4">
@@ -61,8 +63,6 @@ const PostCard = ({ post }: PostCardProps) => {
                         ))}
                     </ul>
                 </div>
-
-                <img src={post.imageUrl || 'assets/icons/profile-placeholder.svg'} alt="post image" className="border-y border-dark-4" />
             </Link>
 
             <PostStats post={post} userId={user.id}/>

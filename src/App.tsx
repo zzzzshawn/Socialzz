@@ -12,7 +12,7 @@ import { Toaster } from "@/components/ui/toaster"
 
 const App = () => {
   return (
-    <main className='flex h-screen'>
+    <main className='flex bg-dark-3 h-screen'>
       <Routes>
         {/* public routes */}
         <Route element={<AuthLayout />} >

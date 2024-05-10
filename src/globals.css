@@ -228,7 +228,7 @@
 
   /* Post Card */
   .post-card {
-    @apply bg-dark-1 rounded-xl  border border-dark-4 p-5 lg:p-6 w-full max-w-screen-sm;
+    @apply bg-zinc-900  rounded-xl  border border-dark-4 p-5 lg:p-6 w-full max-w-screen-sm;
   }
 
   .post-card_img {
