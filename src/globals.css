@@ -188,7 +188,7 @@
 
   /* Bottom bar */
   .bottom-bar {
-    @apply z-50 flex justify-around items-center w-full sticky bottom-0  bg-dark-3 border-t border-dark-4 px-5 py-4 md:hidden ;
+    @apply z-50 flex justify-around items-center w-full sticky bottom-0  bg-dark-3 border-t border-zinc-800 px-5 py-4 md:hidden rounded-t-[50px] ;
   }
 
   /* File uploader */
@@ -237,7 +237,7 @@
 
   /* Topbar */
   .topbar {
-    @apply sticky top-0 z-50 md:hidden bg-dark-2 w-full;
+    @apply sticky top-0 z-50 md:hidden bg-dark-3 border-b border-dark-4 w-full;
   }
 
   /* User card */
