@@ -16,7 +16,7 @@ const RootLayout = () => {
       <Topbar />
       <LeftSidebar />
 
-      <section className='flex flex-1 md:h-screen min-h-[80vh]'>
+      <section className='flex flex-1 md:h-screen min-h-[100vh]'>
         <Outlet />
       </section>
 
