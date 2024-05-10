@@ -34,7 +34,7 @@ const PostDetails = () => {
   return (
     <div className='post_details-container'>
       {isPending ? <Loader /> : (
-        <div className="post_details-card">
+        <div className="post_details-card ">
           <img src={post?.imageUrl} alt="creator" className='post_details-img' />
           <div className="post_details-info">
             <div className="flex-between w-full ">
@@ -50,9 +50,8 @@ const PostDetails = () => {
                   </p>
                   <div className="flex items-center flex-wrap gap-2 text-slate-400">
                     <p className="subtle-semibold lg:small-regular">
-                      {timeAgo(post?.$createdAt)}
+                      {timeAgo(post?.$createdAt)},
                     </p>
-                    -
                     <p className="subtle-semibold lg:small-regular">
                       {post?.location}
                     </p>
