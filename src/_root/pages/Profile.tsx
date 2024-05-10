@@ -51,7 +51,7 @@ const Profile = () => {
 
   if (!currentUser)
     return (
-      <div className="flex-center w-full h-full">
+      <div className="flex-center w-full h-screen">
         <Loader />
       </div>
     );
