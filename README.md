@@ -41,3 +41,11 @@ Contributions are welcome! If you encounter any bugs, have feature requests, or 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Guest Login
+
+Use these credentials to test the application as a guest
+
+```javascript
+email: guest@guest.com
+password: 12345678
