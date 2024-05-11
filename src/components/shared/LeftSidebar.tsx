@@ -76,11 +76,11 @@ const LeftSidebar = () => {
 
       <Button
         variant="ghost"
-        className="hover:bg-white group flex justify-start  "
+        className="hover:bg-white group flex justify-start mt-20 "
         onClick={() => signOut()}
       >
         <img
-          className="group-hover:invert p-2"
+          className="group-hover:invert max-lg:w-[30px] max-lg:h-[30px] "
           src="/assets/icons/logout.svg"
           alt="logout"
         />

@@ -12,7 +12,7 @@ const RootLayout = () => {
   }, [pathname]);
 
   return (
-    <div className='md:w-[90vw] xl:w-[70vw] max-md:w-full mx-auto md:flex'>
+    <div className='md:w-[90vw] xl:w-[70vw] 2xl:w-[58vw] max-md:w-full mx-auto md:flex'>
       <Topbar />
       <LeftSidebar />
 
