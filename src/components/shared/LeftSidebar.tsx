@@ -11,6 +11,7 @@ const LeftSidebar = () => {
   const { mutate: signOut, isSuccess } = useSignOutAccount();
   const navigate = useNavigate();
   const { user } = useUserContext();
+  const { isAuthenticated } = useUserContext();
 
   useEffect(() => {
     if (isSuccess) navigate(0);
@@ -36,7 +37,12 @@ const LeftSidebar = () => {
           />
         </Link>
 
-        <Link to={`/profile/${user.id}`} className="flex gap-3 item-center">
+        <Link
+          to={`/profile/${user.id}`}
+          className={`flex gap-3 item-center ${
+            isAuthenticated ? "" : "hidden"
+          }`}
+        >
           <img
             src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
             alt="profile"
@@ -74,22 +80,59 @@ const LeftSidebar = () => {
         </ul>
       </div>
 
-      <Button
-        variant="ghost"
-        className="hover:bg-white group flex justify-start mt-20 "
-        onClick={() => signOut()}
-      >
-        <img
-          className="group-hover:invert max-lg:w-[30px] max-lg:h-[30px] "
-          src="/assets/icons/logout.svg"
-          alt="logout"
-        />
-        <p
-          className={`body-bold group-hover:text-black  text-light-1  max-lg:hidden`}
+      {isAuthenticated ? (
+        <Button
+          variant="ghost"
+          className="hover:bg-white group flex justify-start mt-20 gap-3"
+          onClick={() => signOut()}
         >
-          Logout
-        </p>
-      </Button>
+          <img
+            className="group-hover:invert max-lg:w-[30px] max-lg:h-[30px] "
+            src="/assets/icons/logout.svg"
+            alt="logout"
+          />
+          <p
+            className={`body-bold group-hover:text-black  text-light-1  max-lg:hidden`}
+          >
+            Logout
+          </p>
+        </Button>
+      ) : (
+        <div className="flex flex-col gap-4">
+          <Link to="/sign-in">
+            <Button
+              variant="ghost"
+              className="hover:bg-white group flex justify-start border border-dark-4 w-full gap-3 font-bold"
+            >
+              <img
+                src="/assets/icons/account.svg"
+                className="group-hover:invert max-lg:w-[30px] max-lg:h-[30px] "
+              />
+              <p
+                className={`font-bold group-hover:text-black  text-light-1  max-lg:hidden`}
+              >
+                Sign-in
+              </p>
+            </Button>
+          </Link>
+          <Link to="/sign-up">
+            <Button
+              variant="ghost"
+              className="hover:bg-white group flex justify-start bg-dark-4 border border-dark-4  w-full gap-3 font-bold"
+            >
+              <img
+                src="/assets/icons/sign-up.svg"
+                className="group-hover:invert max-lg:w-[30px] max-lg:h-[30px] "
+              />
+              <p
+                className={`font-bold group-hover:text-black  text-light-1  max-lg:hidden`}
+              >
+                Sign-up
+              </p>
+            </Button>
+          </Link>
+        </div>
+      )}
     </nav>
   );
 };
