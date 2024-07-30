@@ -15,9 +15,9 @@ const Oops = () => {
   }, [isAuthenticated]);
 
   return (
-    <div className="flex flex-col gap-5 items-center justify-center p-5 w-full h-[80%]">
+    <div className="flex flex-col gap-5 items-center justify-center p-5 w-full h-[80%] max-sm:mt-20">
       <h2 className="font-semibold text-2xl text-center max-sm:text-lg">
-        You haven't signed up, have you?{" "}
+        You haven't signed in, have you?{" "}
       </h2>
       <img src="/assets/images/base.png" alt="" className="max-h-[350px]" />
       <Link to="/sign-in">
