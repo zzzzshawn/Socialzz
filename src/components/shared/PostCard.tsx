@@ -49,8 +49,8 @@ const PostCard = ({ post }: PostCardProps) => {
         >
           <img src="/assets/icons/edit.svg" 
           alt="edit" 
-          width={20} 
-          height={20} />
+          width={18} 
+          height={18} />
         </Link>
       </div>
 
@@ -58,7 +58,7 @@ const PostCard = ({ post }: PostCardProps) => {
         <img
           src={post.imageUrl || "assets/icons/profile-placeholder.svg"}
           alt="post image"
-          className=" border-y border-dark-4 p-5"
+          className=" border-y border-dark-4 p-5 min-w-[235px] sm:w-[750px] md:w-[1000px] lg:w-[1220px] xl:[1500px] "
         />
 
         <div className="small-medium lg:base-medium py-5 ">
