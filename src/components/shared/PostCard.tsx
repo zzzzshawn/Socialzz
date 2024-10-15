@@ -1,19 +1,30 @@
 import { useUserContext } from "@/context/AuthContext";
+import { useState } from "react";
 import { timeAgo } from "@/lib/utils";
 import { Models } from "appwrite";
 import { Link } from "react-router-dom";
 import PostStats from "./PostStats";
+import Loader from "./Loader";
 
 type PostCardProps = {
   post: Models.Document;
 };
 
 const PostCard = ({ post }: PostCardProps) => {
+  const [loading, setLoading] = useState(true); // State for managing image loading
   const dateString: string = post.$createdAt;
   const timestamp: string = timeAgo(dateString);
 
   const { user } = useUserContext();
-  if (!post.creator) return;
+  if (!post.creator) return null;
+
+  const handleImageLoad = () => {
+    setLoading(false); // Set loading to false when the image is loaded
+  };
+
+  const handleImageError = () => {
+    setLoading(false); // Stop loading spinner if there's an error
+  };
 
   return (
     <div className="post-card">
@@ -55,17 +66,27 @@ const PostCard = ({ post }: PostCardProps) => {
       </div>
 
       <Link to={`/posts/${post.$id}`}>
-        <img
-          src={post.imageUrl || "assets/icons/profile-placeholder.svg"}
-          alt="post image"
-          className=" border-y border-dark-4 p-5 min-w-[235px] sm:w-[750px] md:w-[1000px] lg:w-[1220px] xl:[1500px] "
-        />
+        <div className="relative min-h-[300px]">
+          {loading && (
+            <div className="absolute size-full inset-0 flex justify-center items-center">
+              <Loader/>
+            </div>
+          )}
+          <img
+            src={post.imageUrl || "assets/icons/profile-placeholder.svg"}
+            alt="post image"
+            className={`border-y border-dark-4 p-5 min-w-[235px] sm:w-[750px] md:w-[1000px] lg:w-[1220px] xl:[1500px] ${
+              loading ? "opacity-0" : "opacity-100"
+            }`} // Hide image while loading
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+          />
+        </div>
 
         <div className="small-medium lg:base-medium py-5 ">
           <p>
-            {" "}
             <span className="body-bold">{post.creator.username}</span> :{" "}
-            <span className="font-extralight">{post.caption}</span>{" "}
+            <span className="font-extralight">{post.caption}</span>
           </p>
           <ul className="flex gap-1 mt-2">
             {post.tags.map((tag: string) => (
