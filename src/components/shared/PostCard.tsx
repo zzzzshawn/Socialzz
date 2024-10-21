@@ -28,7 +28,7 @@ const PostCard = ({ post }: PostCardProps) => {
 
   return (
     <div className="post-card">
-      <div className="flex-between mb-5">
+      <div className="flex-between mb-5 border-b pb-5 border-dark-4">
         <div className="flex items-center gap-3">
           <Link to={`/profile/${post.creator.$id}`}>
             <img
@@ -37,7 +37,7 @@ const PostCard = ({ post }: PostCardProps) => {
                 "/assets/icons/profile-placeholder.svg"
               }
               alt="creator"
-              className="rounded-full w-12 h-12"
+              className="rounded-full w-12 h-12 object-contain"
             />
           </Link>
 
@@ -75,15 +75,15 @@ const PostCard = ({ post }: PostCardProps) => {
           <img
             src={post.imageUrl || "assets/icons/profile-placeholder.svg"}
             alt="post image"
-            className={`border-y border-dark-4 p-5 min-w-[235px] sm:w-[750px] md:w-[1000px] lg:w-[1220px] xl:[1500px] ${
+            className={` rounded-md  min-w-[235px] sm:w-[750px] md:w-[1000px] lg:w-[1220px] xl:[1500px] ${
               loading ? "opacity-0" : "opacity-100"
-            }`} // Hide image while loading
+            }`}
             onLoad={handleImageLoad}
             onError={handleImageError}
           />
         </div>
 
-        <div className="small-medium lg:base-medium py-5 ">
+        <div className="small-medium lg:base-medium py-3 border-t border-dark-4 mt-5">
           <p>
             <span className="body-bold">{post.creator.username}</span> :{" "}
             <span className="font-extralight">{post.caption}</span>

@@ -42,7 +42,7 @@ const PostDetails = () => {
               <img
                 src={post?.imageUrl}
                 alt="creator"
-                className="post_details-img"
+                className="post_details-img object-contain size-full"
               />
               <div className="post_details-info">
                 <div className="flex-between w-full ">
@@ -56,7 +56,7 @@ const PostDetails = () => {
                         "/assets/icons/profile-placeholder.svg"
                       }
                       alt="post"
-                      className="rounded-full w-8 h-8 lg:w-12 lg:h-12"
+                      className="rounded-full w-8 h-8 lg:w-12 lg:h-12 object-contain"
                     />
 
                     <div className="flex flex-col">

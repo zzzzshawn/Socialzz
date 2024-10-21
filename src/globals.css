@@ -157,7 +157,7 @@
   }
 
   .post_details-img {
-    @apply h-[380px] md:h-[420px] lg:h-[480px] 2xl:w-[50%] rounded-t-[30px] xl:rounded-l-[24px] 2xl:rounded-tr-none object-cover p-5 bg-zinc-900;
+    @apply 2xl:w-[50%] rounded-t-[30px] xl:rounded-l-[24px] 2xl:rounded-tr-none p-5 bg-zinc-900;
   }
 
   .post_details-info {
