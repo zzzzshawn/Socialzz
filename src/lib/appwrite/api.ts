@@ -152,13 +152,10 @@ export async function uploadFile(file: File) {
 
 export async function getFilePreview(fileId: string) {
     try {
-        const fileUrl = storage.getFilePreview(
+        const fileUrl = storage.getFileView(
             appwriteConfig.storageId,
             fileId,
-            2000, //width
-            2000, //height
-            "top", // postition / gravity -> where its goin to show (top)
-            100 // quality
+            
         )
 
         return fileUrl;
@@ -181,6 +178,7 @@ export async function deleteFile(fileId: string) {
 
 
 export async function getRecentPosts() {
+
     const posts = await databases.listDocuments(
         appwriteConfig.databaseId,
         appwriteConfig.postCollectionId,
